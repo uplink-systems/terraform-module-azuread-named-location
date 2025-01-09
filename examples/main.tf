@@ -47,7 +47,7 @@ variable "azuread_named_location" {
   }
 }
 module "azuread_named_location" {
-  source                = "github.com/uplink-systems/Terraform-Modules//modules/azuread/named_location"
+  source                = "github.com/uplink-systems/terraform-module-azuread-named-location"
   for_each              = var.azuread_named_location
   named_location        = each.value
 }
@@ -58,7 +58,7 @@ module "azuread_named_location" {
 ####################################################################################################
 
 module "azuread_named_location_01" {
-  source                = "github.com/uplink-systems/Terraform-Modules//modules/azuread/named_location"
+  source                = "github.com/uplink-systems/terraform-module-azuread-named-location"
   named_location        = {
     display_name  = "Named-Location-01"
     country = {
