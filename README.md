@@ -20,7 +20,7 @@ The module **terraform-module-azuread-named-location** is intended to create nam
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
-| <a name="requirement_azuread"></a> [hashicorpe\/azuread](#requirement\_azuread) | ~> 3.0 |
+| <a name="requirement_azuread"></a> [hashicorp\/azuread](#requirement\_azuread) | ~> 3.0 |
 
 ### Resources
 
