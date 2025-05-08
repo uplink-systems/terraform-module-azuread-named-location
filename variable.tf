@@ -14,6 +14,7 @@ variable "named_location" {
     country       = optional(object({
       enabled                               = optional(bool, true)
       countries_and_regions                 = optional(list(string), [])
+      country_lookup_method                 = optional(string)
       include_unknown_countries_and_regions = optional(bool, false)
     }), { enabled = false })
     ip            = optional(object({
@@ -34,6 +35,14 @@ variable "named_location" {
     error_message = <<-EOF
       Both blocks 'country' and 'ip' are configured in 'named_location' variable.
       Must be only one of either 'country' or 'ip'.
+    EOF
+  }
+  validation {
+    condition     = var.named_location.country.country_lookup_method == null ? true : contains(["clientIpAddress", "authenticatorAppGps"], var.named_location.country.country_lookup_method)
+    error_message = <<-EOF
+      Value for 'var.named_location.country.country_lookup_method' is invalid: ${var.named_location.country.country_lookup_method == null ? 0 : var.named_location.country.country_lookup_method}
+      Must be one of:
+        "clientIpAddress", "authenticatorAppGps" or null
     EOF
   }
 }

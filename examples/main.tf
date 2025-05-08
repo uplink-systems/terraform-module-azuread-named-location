@@ -23,6 +23,7 @@ variable "azuread_named_location" {
           "DE",
           "AT",
         ]
+        country_lookup_method                 = "authenticatorAppGps"
         include_unknown_countries_and_regions = false
       }
     }
