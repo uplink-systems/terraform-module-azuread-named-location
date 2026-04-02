@@ -4,23 +4,12 @@
 
 The module **terraform-module-azuread-named-location** is intended to create named locations in Azure AD following my business needs and standards. The module scopes all types of location (Country-based/IP-based) in one resource depending on the variable values provided.  
 
-#### Tasks & ToDos
-
-- [x] Create and manage ip range based named location
-- [x] Create and manage country and region based named location
-- [x] Merge to dynamically create either ip range based named location or country and region based named location depending on input variable's values
-- [ ] \(Optional) Apply input variable validation rules if necessary to match available resource values
-- [ ] \(Optional) Apply input variable validation rules if necessary to match business standards
-- [x] Create and manage modules outputs
-- [ ] Document module with README.md
-- [ ] \(Optional) Review code regularly for possible improvements and updates
-
 ### Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0 |
-| <a name="requirement_azuread"></a> [hashicorp\/azuread](#requirement\_azuread) | ~> 3.0 |
+| <a name="requirement_azuread"></a> [hashicorp\/azuread](#requirement\_azuread) | ~> 3.1 |
 
 ### Resources
 
@@ -32,7 +21,7 @@ The module **terraform-module-azuread-named-location** is intended to create nam
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_named_location"></a> [named\_location](#input\_named\_location) | 'var.named_location' is the main variable for azuread_named_location resource settings | <pre>type        = object({<br>  display_name  = string<br>  country       = optional(object({<br>    enabled                               = optional(bool, true)<br>    countries_and_regions                 = optional(list(string), [])<br>    include_unknown_countries_and_regions = optional(bool, false)<br>  }), { enabled = false })<br>  ip            = optional(object({<br>    enabled                               = optional(bool, true)<br>    ip_ranges                             = optional(list(string), [])<br>    trusted                               = optional(bool, false)<br>  }), { enabled = false})<br>})<br></pre> | none | yes |
+| <a name="input_named_location"></a> [named\_location](#input\_named\_location) | 'var.named_location' is the main variable for azuread_named_location resource settings | <pre>type        = object({<br>  display_name  = string<br>  country       = optional(object({<br>    enabled                               = optional(bool, true)<br>    countries_and_regions                 = optional(list(string), [])<br>    country_lookup_method                 = optional(string)<br>    include_unknown_countries_and_regions = optional(bool, false)<br>  }), { enabled = false })<br>  ip            = optional(object({<br>    enabled                               = optional(bool, true)<br>    ip_ranges                             = optional(list(string), [])<br>    trusted                               = optional(bool, false)<br>  }), { enabled = false})<br>})<br></pre> | none | yes |
 
 ### Outputs
 

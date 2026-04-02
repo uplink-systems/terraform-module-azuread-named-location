@@ -8,6 +8,7 @@ resource "azuread_named_location" "named_location" {
     for_each        = var.named_location.country.enabled ? [1] : []
     content {
       countries_and_regions                 = var.named_location.country.countries_and_regions
+      country_lookup_method                 = var.named_location.country.country_lookup_method
       include_unknown_countries_and_regions = var.named_location.country.include_unknown_countries_and_regions
     }
   }
